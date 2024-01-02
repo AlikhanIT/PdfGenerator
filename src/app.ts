@@ -71,10 +71,10 @@ app.post('/api/v1/generate-pdf', async (req: Request, res: Response) => {
 
     const browser = await puppeteer.launch({
         headless: 'new',
-        // `headless: true` (default) enables old Headless;
-        // `headless: 'new'` enables new Headless;
-        // `headless: false` enables “headful” mode.
+        executablePath: '/usr/bin/chromium-browser',
+        pipe: true
     });
+
     const page = await browser.newPage();
 
     // Set content and generate PDF

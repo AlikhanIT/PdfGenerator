@@ -40,6 +40,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxtst6 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
+    && apt-get update && apt-get install -y --no-install-recommends chromium-browser \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Создаем пользователя "appuser"
+RUN useradd -ms /bin/bash appuser
+
+# Переключаемся на пользователя "appuser"
+USER appuser
 
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /usr/src/app
