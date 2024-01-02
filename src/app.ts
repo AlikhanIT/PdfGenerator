@@ -72,6 +72,7 @@ app.post('/api/v1/generate-pdf', async (req: Request, res: Response) => {
     const browser = await puppeteer.launch({
         headless: 'new',
         executablePath: '/usr/bin/chromium-browser',
+        args: ['--no-sandbox'],
         pipe: true
     });
 
