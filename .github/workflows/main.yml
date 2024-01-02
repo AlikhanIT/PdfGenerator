@@ -1,4 +1,4 @@
-name: CI
+name: Build and Deploy
 
 on:
   push:
@@ -6,23 +6,23 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: self-hosted
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: 16
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build and deploy
-        run: |
-          npm run build
-          npm run deploy  # Замените эту команду на вашу команду для развертывания
-# Добавьте дополнительные блоки `jobs` по мере необходимости
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
+        run: npm run deploy
