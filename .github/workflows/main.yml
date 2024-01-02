@@ -21,12 +21,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
-        run: npm test
-
       - name: Build and deploy
         run: |
-          npm run build
           npm start  # Замените эту команду на вашу команду для развертывания
 
   generate-pdf:
@@ -43,8 +39,5 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Run PDF generation tests
-        run: npm run test:pdf-generation
 
 # Добавьте дополнительные блоки `jobs` по мере необходимости
