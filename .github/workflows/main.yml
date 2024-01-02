@@ -23,7 +23,7 @@ jobs:
 
       - name: Build and deploy
         run: |
-          npm start &  # Замените эту команду на вашу команду для развертывания
+          npm start  # Замените эту команду на вашу команду для развертывания
 
 #  generate-pdf:
 #    runs-on: self-hosted
