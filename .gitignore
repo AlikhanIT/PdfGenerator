@@ -1,6 +1,7 @@
 ### NextJS template
 # dependencies
 /node_modules
+/.idea
 /.pnp
 .pnp.js
 
