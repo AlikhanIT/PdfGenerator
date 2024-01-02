@@ -69,7 +69,12 @@ app.post('/api/v1/generate-pdf', async (req: Request, res: Response) => {
         return value;
     };
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        headless: 'new',
+        // `headless: true` (default) enables old Headless;
+        // `headless: 'new'` enables new Headless;
+        // `headless: false` enables “headful” mode.
+    });
     const page = await browser.newPage();
 
     // Set content and generate PDF
