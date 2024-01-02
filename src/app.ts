@@ -7,28 +7,29 @@ import swaggerJsdoc from 'swagger-jsdoc';
 const app = express();
 const port = 987;
 
-// Swagger options
 const swaggerOptions = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'My API',
+            title: 'Pdf enerator',
             version: '1.0.0',
         },
     },
     apis: ['./src/**/*.ts'],
+    tags: [
+        {
+            name: 'PdfGenerator',
+            description: 'Operations related to PDF generation',
+        },
+    ],
 };
-
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
-// Serve Swagger UI at /swagger/index.html
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Middleware to parse JSON and form data
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 
-// Endpoint for generating PDF from HTML
 /**
  * @swagger
  * /api/v1/generate-pdf:
@@ -60,8 +61,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
  */
 app.post('/api/v1/generate-pdf', async (req: Request, res: Response) => {
     const { html, margin } = req.body;
-
-    // Helper function to add units to numerical values
     const addUnits = (value: number | string, defaultUnit: string): string => {
         if (typeof value === 'number') {
             return `${value}${defaultUnit}`;
@@ -101,7 +100,6 @@ app.post('/api/v1/generate-pdf', async (req: Request, res: Response) => {
     res.json({ pdfBase64 });
 });
 
-// Endpoint for generating PDF from HTML with header and footer
 /**
  * @swagger
  * /api/v1/generate-pdf-with-header-footer:
@@ -138,7 +136,6 @@ app.post('/api/v1/generate-pdf', async (req: Request, res: Response) => {
 app.post('/api/v1/generate-pdf-with-header-footer', async (req: Request, res: Response) => {
     const { html, margin, headerTemplate, footerTemplate } = req.body;
 
-    // Helper function to add units to numerical values
     const addUnits = (value: number | string, defaultUnit: string): string => {
         if (typeof value === 'number') {
             return `${value}${defaultUnit}`;
@@ -149,10 +146,8 @@ app.post('/api/v1/generate-pdf-with-header-footer', async (req: Request, res: Re
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
-    // Set content and generate PDF with header and footer
     await page.setContent(html);
 
-    // Set margin options, header, and footer templates
     const pdfBuffer = await page.pdf({
         format: 'A4',
         margin: {
@@ -173,7 +168,6 @@ app.post('/api/v1/generate-pdf-with-header-footer', async (req: Request, res: Re
     res.json({ pdfBase64 });
 });
 
-// Start the server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
