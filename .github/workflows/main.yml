@@ -28,3 +28,4 @@ jobs:
         run: |
           npm install -g pm2
           npm run deploy  # Замените эту команду на вашу команду для развертывания
+          pm2 status
