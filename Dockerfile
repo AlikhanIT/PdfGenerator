@@ -58,6 +58,8 @@ WORKDIR /usr/src/app
 # Копируем файл package.json и package-lock.json (если есть)
 COPY package*.json ./
 
+RUN npm cache clean --force
+
 # Устанавливаем зависимости
 RUN npm install
 
