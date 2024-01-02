@@ -11,7 +11,7 @@ const swaggerOptions = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'Pdf generator2',
+            title: 'Pdf generator3',
             version: '1.0.0',
         },
     },
