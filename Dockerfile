@@ -1,7 +1,7 @@
 # Используйте официальный образ Node.js
 FROM node:16
 
-# From source.chromium.org, with the specific versions removed.
+# Устанавливаем необходимые зависимости, включая Chromium Browser
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libasound2 \
     libatk-bridge2.0-0 \
@@ -38,9 +38,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxshmfence1 \
     libxss1 \
     libxtst6 \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && apt-get update && apt-get install -y --no-install-recommends chromium-browser \
+    chromium-browser \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
