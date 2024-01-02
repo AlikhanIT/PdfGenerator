@@ -41,7 +41,7 @@ RUN apt-get install -y --no-install-recommends \
     libxshmfence1 \
     libxss1 \
     libxtst6 \
-    chromium-browser
+    chromium
 
 # Очищаем кэш
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
