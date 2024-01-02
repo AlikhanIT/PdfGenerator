@@ -4,8 +4,6 @@ FROM node:18.13.0
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /usr/src/app
 
-RUN apt-get install -y python make gcc g++
-
 # Install google-chrome-stable
 RUN apt-get update && apt-get install gnupg wget -y && \
   wget --quiet --output-document=- https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor > /etc/apt/trusted.gpg.d/google-archive.gpg && \
