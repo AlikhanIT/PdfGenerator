@@ -1,8 +1,11 @@
 # Используйте официальный образ Node.js
 FROM node:16
 
+# Обновляем список пакетов
+RUN apt-get update
+
 # Устанавливаем необходимые зависимости, включая Chromium Browser
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get install -y --no-install-recommends \
     libasound2 \
     libatk-bridge2.0-0 \
     libatk1.0-0 \
@@ -38,9 +41,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxshmfence1 \
     libxss1 \
     libxtst6 \
-    chromium-browser \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    chromium-browser
+
+# Очищаем кэш
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Создаем пользователя "appuser"
 RUN useradd -ms /bin/bash appuser
