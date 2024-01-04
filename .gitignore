@@ -4,6 +4,7 @@
 /.github
 /.idea
 /.pnp
+/.vs
 /dist
 .pnp.js
 
