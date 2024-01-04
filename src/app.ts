@@ -25,6 +25,7 @@ const swaggerOptions = {
 };
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
+app.use('/swagger/index.html', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(bodyParser.json({ limit: '50mb' }));
