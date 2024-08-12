@@ -6,11 +6,11 @@
 
 1. Клонируйте репозиторий:
     ```bash
-    git clone http://gitlab/dct/services/otbasybank.linuxpdfgeneratorservice.git
+    git clone [http://gitlab/dct/services/otbasybank.linuxpdfgeneratorservice.git](https://github.com/AlikhanIT/PdfGenerator.git)
     ```
 2. Перейдите в директорию проекта:
     ```bash
-    cd otbasybank.linuxpdfgeneratorservice
+    cd PdfGenerator
     ```
 3. Установите зависимости:
     ```bash
